@@ -19,4 +19,4 @@
   }
 
   createAndAddNewNote()
-})(this)
+})(this);
