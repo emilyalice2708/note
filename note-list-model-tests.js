@@ -2,31 +2,21 @@
   function testNoteListStartsEmpty() {
     let noteList = new NoteList();
 
-    if (!Array.isArray(noteList.getNotes())) {
-      throw new Error("List should be an array.")
-    }
-
-    if (noteList.getNotes().length != 0) {
-      throw new Error("List should be empty.");
-    }
+    assert.isTrue(Array.isArray(noteList.getNotes()))
+    assert.isTrue(noteList.getNotes().length === 0)
   };
 
   testNoteListStartsEmpty();
 })(this);
 
 (function (exports) {
-  function createNewNoteAndAddToList() {
+  function createAndAddNewNote() {
     let noteList = new NoteList;
     noteList.newNote("Test note");
 
-    if (noteList.getNotes().length == 0) {
-      throw new Error("No note created.")
-    }
-
-    if (noteList.getNotes()[0].getText() !== "Test note") {
-      throw new Error("Note was not created with correct text.")
-    }
+    assert.isTrue(noteList.getNotes().length !== 0)
+    assert.isTrue(noteList.getNotes()[0].getText() === "Test note")
   }
 
-  createNewNoteAndAddToList()
+  createAndAddNewNote()
 })(this)
