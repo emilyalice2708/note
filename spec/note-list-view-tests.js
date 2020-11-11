@@ -1,4 +1,4 @@
-(function (exports) {
+(function () {
   function noteListViewIsObject(){
     let noteListModel = new NoteList();
     let noteListView = new NoteListView(noteListModel);

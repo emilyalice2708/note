@@ -1,4 +1,4 @@
-(function(exports) {
+(function() {
   function testNoteCanStoreText(){
     var note = new Note("I'm a note");
 

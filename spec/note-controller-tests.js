@@ -1,14 +1,10 @@
-(function (exports) {
+(function () {
   function noteControllerCanBeInstantiated() {
     let notelist = new NoteList();
     let noteController = new NoteController(notelist);
     assert.isTrue(typeof(noteController) === "object")
   }
-  noteControllerCanBeInstantiated()
-})(this);
 
-
-(function (exports) {
   function noteControllerCreatesHtmlList() {
     let app = document.createElement('div');
     app.setAttribute('id', 'app');
@@ -19,5 +15,7 @@
 
     assert.isTrue(app.innerHTML == '<ul></ul>');
   }
+
+  noteControllerCanBeInstantiated()
   noteControllerCreatesHtmlList()
 })(this);

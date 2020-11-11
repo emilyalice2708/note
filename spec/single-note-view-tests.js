@@ -1,5 +1,4 @@
-(function (exports) {
-
+(function () {
   class FakeNote{
     constructor(string){
       this._text = string;

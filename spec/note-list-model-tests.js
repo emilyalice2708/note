@@ -1,4 +1,4 @@
-(function (exports) {
+(function () {
   function testNoteListStartsEmpty() {
     let noteList = new NoteList();
 
