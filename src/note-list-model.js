@@ -1,6 +1,7 @@
 class NoteList {
   constructor() {
     this.notes = [];
+    this.id = 0;
   }
 
   getNotes() {
@@ -8,7 +9,8 @@ class NoteList {
   }
 
   newNote(text) {
-    let note = new Note(text);
+    let note = new Note(text, this.id);
     this.notes.push(note);
+    this.id++;
   }
 }

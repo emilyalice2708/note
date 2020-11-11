@@ -17,8 +17,7 @@
     let noteController = new NoteController(notelist);
     noteController.insertHtml();
 
-    assert.isTrue(app.innerHTML == '<ul><li><div>Favourite drink: seltzer</div></li></ul>');
+    assert.isTrue(app.innerHTML == '<ul><li><a href="#notes/0">Favourite drink: sel</a></li></ul>');
   }
   noteControllerCreatesHtmlList()
 })(this);
-

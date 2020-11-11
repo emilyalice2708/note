@@ -5,11 +5,9 @@ class NoteListView{
 
   getHtmlList(){
     let listView = '<ul>'
-    for (var i = 0; i < this._noteList.getNotes().length; i++){
-      listView += '<li><div>' + this._noteList.getNotes()[i].getText() + '</div></li>'
-    }
-    listView += '</ul>'
-    return listView
+    let notes = this._noteList.getNotes().map(note => {
+      return `<li><a href="#notes/${note.id}">${note.getText().slice(0, 20)}</a></li>`
+    });
+    return listView += notes.join('') + '</ul>'
   };
 };
-

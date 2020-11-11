@@ -6,10 +6,6 @@
     assert.isTrue(noteList.getNotes().length === 0)
   };
 
-  testNoteListStartsEmpty();
-})(this);
-
-(function (exports) {
   function createAndAddNewNote() {
     let noteList = new NoteList;
     noteList.newNote("Test note");
@@ -18,5 +14,16 @@
     assert.isTrue(noteList.getNotes()[0].getText() === "Test note")
   }
 
-  createAndAddNewNote()
+  function addsIdToNotes(){
+    let noteList = new NoteList;
+    noteList.newNote("Test note 1");
+    noteList.newNote("Test note 2");
+    assert.isTrue(noteList.getNotes().length === 2)
+    assert.isTrue(noteList.getNotes()[0].id === 0)
+    assert.isTrue(noteList.getNotes()[1].id === 1)
+  }
+
+  addsIdToNotes();
+  testNoteListStartsEmpty();
+  createAndAddNewNote();
 })(this);

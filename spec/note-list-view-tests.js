@@ -22,7 +22,7 @@
     let noteList = new NoteList();
     noteList.newNote("Test note");
     let noteListView = new NoteListView(noteList);
-    assert.isTrue(noteListView.getHtmlList() === '<ul><li><div>Test note</div></li></ul>')
+    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a href="#notes/0">Test note</a></li></ul>')
   }
 
   function getHtmlListCanReturnMultipleObjects(){
@@ -30,7 +30,7 @@
     noteList.newNote("Test note 1");
     noteList.newNote("Test note 2");
     let noteListView = new NoteListView(noteList);
-    assert.isTrue(noteListView.getHtmlList() === '<ul><li><div>Test note 1</div></li><li><div>Test note 2</div></li></ul>')
+    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a href="#notes/0">Test note 1</a></li><li><a href="#notes/1">Test note 2</a></li></ul>')
   }
 
   function getHtmlListCanReturnZeroObjects(){
@@ -39,10 +39,18 @@
     assert.isTrue(noteListView.getHtmlList() === '<ul></ul>')
   }
 
+  function getHtmlListReturns20Characters(){
+    let noteList = new NoteList();
+    noteList.newNote("Test note with more than 20 characters");
+    let noteListView = new NoteListView(noteList);
+    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a href="#notes/0">Test note with more </a></li></ul>')
+  }
+
   noteListViewIsObject()
   getHtmlListIsDefined()
   acceptsNoteLists()
   getHtmlListCanReturnOneObject()
   getHtmlListCanReturnMultipleObjects()
   getHtmlListCanReturnZeroObjects()
+  getHtmlListReturns20Characters()
 })(this);
