@@ -1,0 +1,23 @@
+{
+  "name": "note",
+  "version": "1.0.0",
+  "description": "",
+  "main": "assert.js",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilyalice2708/note.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilyalice2708/note/issues"
+  },
+  "homepage": "https://github.com/emilyalice2708/note#readme"
+}
