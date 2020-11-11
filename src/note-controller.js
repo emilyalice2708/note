@@ -1,29 +1,35 @@
+var noteList;
+var controller;
+
 class NoteController {
   constructor(notelist){
-    this._noteList = notelist;
-    this._noteList.newNote("Favourite drink: seltzer");
-    this._view = new NoteListView(this._noteList);
+    this.noteList = notelist;
+    this.noteList.newNote("Favourite drink: seltzer");
+    this.view = new NoteListView(this.noteList);
   };
 
   insertHtml(){
+    this.view = new NoteListView(controller.noteList);
     let app = document.getElementById('app');
-    app.innerHTML = this._view.getHtmlList();
+    app.innerHTML = controller.view.getHtmlList();
   };
 
   submitForm(){
     const form = document.getElementById('text');
     form.addEventListener('submit', function(event){
       event.preventDefault();
-      console.log(event);
-      console.log(event.path);
+      var note = event.srcElement[0].value;
+      controller.noteList.newNote(note);
+      controller.insertHtml()
     });
-  }
+
+  };
 
   changeURL(){
-    var notes = this._noteList.notes
     window.addEventListener("hashchange", function(){
       let path = window.location.hash.split('#')[1]
       let id = path.split('/')[1]
+      let notes = controller.noteList.notes
       if (notes[id]){
         let text = notes[id].getText()
         let newNote = new Note(text);
@@ -32,9 +38,9 @@ class NoteController {
       };
     });
   };
-}
-let notelist = new NoteList();
-let controller = new NoteController(notelist);
+};
+notelist = new NoteList();
+controller = new NoteController(notelist);
 controller.insertHtml();
 controller.changeURL()
 controller.submitForm()
