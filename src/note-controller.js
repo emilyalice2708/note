@@ -4,7 +4,7 @@ var controller;
 class NoteController {
   constructor(notelist){
     this.noteList = notelist;
-    this.noteList.newNote("Favourite drink: seltzer");
+    //this.noteList.newNote("Favourite drink: seltzer");
     this.view = new NoteListView(this.noteList);
   };
 
