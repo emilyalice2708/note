@@ -4,41 +4,47 @@ var controller;
 class NoteController {
   constructor(notelist){
     this.noteList = notelist;
-    //this.noteList.newNote("Favourite drink: seltzer");
     this.view = new NoteListView(this.noteList);
   };
 
   insertHtml(){
-    this.view = new NoteListView(controller.noteList);
-    let app = document.getElementById('app');
-    app.innerHTML = controller.view.getHtmlList();
+    const app = document.getElementById('app');
+    if(!app) return;
+    app.innerHTML = this.view.getHtmlList();
   };
 
   submitForm(){
     const form = document.getElementById('text');
+    if (!form) return;
     form.addEventListener('submit', function(event){
       event.preventDefault();
-      var note = event.srcElement[0].value;
-      controller.noteList.newNote(note);
-      controller.insertHtml()
-    });
+      const note = event.srcElement[0] ? event.srcElement[0].value : null;
+      if (!note) return
 
+      this.noteList.newNote(note);
+      this.insertHtml()
+    }.bind(this));
   };
 
   changeURL(){
     window.addEventListener("hashchange", function(){
-      let path = window.location.hash.split('#')[1]
-      let id = path.split('/')[1]
-      let notes = controller.noteList.notes
-      if (notes[id]){
-        let text = notes[id].getText()
-        let newNote = new Note(text);
-        let singlenote = new SingleNoteView(newNote);
-        document.getElementById('app').innerHTML = singlenote.getHtmlNote();
-      };
-    });
+      const path = window.location.hash.split('#')[1]
+      const id = path.split('/')[1]
+      this.displayNote(id)
+    }.bind(this));
   };
+
+  displayNote(id){
+    const notes = this.noteList.notes
+    if (notes[id]){
+      const text = notes[id].getText()
+      const newNote = new Note(text);
+      const singlenote = new SingleNoteView(newNote);
+      document.getElementById('app').innerHTML = singlenote.getHtmlNote();
+    };
+  }
 };
+
 notelist = new NoteList();
 controller = new NoteController(notelist);
 controller.insertHtml();
