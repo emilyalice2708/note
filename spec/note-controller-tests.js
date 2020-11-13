@@ -23,7 +23,7 @@
     let notelist = new NoteList();
     let noteController = new NoteController(notelist);
     assert.isTrue(typeof(noteController) === "object")
-    console.log("canbeinstantiated")
+    console.log("CAN BE INSTANTIATED")
   }
  
   function canCreateEmptyHtmlList() {
@@ -31,36 +31,35 @@
     let noteController = new NoteController(notelist);
     noteController.insertHtml();
     assert.isTrue(app.innerHTML == '<ul></ul>');
+    console.log("CAN CREATE EMPTY HTML LIST")
   }
 
   function canAddNoteAndUrl() {
     let notelist = new NoteList();
-    notelist.newNote("test")
+    notelist.newNote("I am the first note to be created here")
     let noteController = new NoteController(notelist);
     noteController.insertHtml();
 
-    assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">test</a></li></ul>');
+    assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">I am the first note </a></li></ul>');
     console.log("RETRIEVES NOTE")
   }
 
   function canDisplayNote() {
     let note = document.getElementById(0)
-    console.log(note)
     note.click();
     setTimeout(function() { assert.isTrue(app.innerHTML == '<div>I am the first note to be created here</div>') }, 7000);
     console.log("CAN DISPLAY NOTE")
   }
 
   function addsNewNotesFromForm(){
-   // <form id=text action=#notes/new method=post>
-   //change inner html value to fill in form and click submit then check
+    let notelist = new NoteList();
+    notelist.newNote("test")
+    let noteController = new NoteController(notelist);
     let input = document.getElementById("text-area")
     input.value = "New note via form"
-    let submit = document.getElementById("text")
-    console.log(submit)
-    submit.click()
-
-   // noteController.createNote("New note via form")
+  //document.getElementById("text").submit().reset()
+    noteController.submitForm()
+   // document.getElementById("text").submit()
    setTimeout(function() { assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">New note via form</a></li></ul>') }, 7000);
   }
 
