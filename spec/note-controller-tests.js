@@ -44,14 +44,6 @@
   }
 
   function canDisplayNote() {
-    //let notelist = new NoteList();
-    //notelist.newNote("I am the first note to be created here")
-    //let noteController = new NoteController(notelist);
-    //noteController.insertHtml();
-    let input = document.getElementById("text-area")
-    input.value = "New note via form"
-    document.getElementById("newnote").click();
-    setTimeout(function() { assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">New note via form</a></li></ul>') }, 7000);
     let note = document.getElementById(0)
     console.log(note)
     note.click();
@@ -60,8 +52,6 @@
   }
 
   function addsNewNotesFromForm(){
-    let notelist = new NoteList();
-    let noteController = new NoteController(notelist);
    // <form id=text action=#notes/new method=post>
    //change inner html value to fill in form and click submit then check
     let input = document.getElementById("text-area")
