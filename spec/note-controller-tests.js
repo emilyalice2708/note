@@ -4,7 +4,7 @@
   document.body.innerHTML = (`
   <form id=text action=#notes/new method=post>
     <input type=text id=text-area>
-    <input type=submit>
+    <input id='newnote' type=submit>
   </form>
 `)
   class DoubleNote {
@@ -39,25 +39,39 @@
     let noteController = new NoteController(notelist);
     noteController.insertHtml();
 
-    assert.isTrue(app.innerHTML == '<ul><li><a href="#notes/0">test</a></li></ul>');
+    assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">test</a></li></ul>');
     console.log("RETRIEVES NOTE")
   }
 
   function canDisplayNote() {
-    let notelist = new NoteList();
-    notelist.newNote("I am the first note to be created here")
-    let noteController = new NoteController(notelist);
-    noteController.insertHtml();
-    assert.isTrue(app.innerHTML == '<ul><li><a href="#notes/0">I am the first note </a></li></ul>');
-    noteController.displayNote(0)
-    assert.isTrue(app.innerHTML == '<div>I am the first note to be created here</div>')
+    //let notelist = new NoteList();
+    //notelist.newNote("I am the first note to be created here")
+    //let noteController = new NoteController(notelist);
+    //noteController.insertHtml();
+    let input = document.getElementById("text-area")
+    input.value = "New note via form"
+    document.getElementById("newnote").click();
+    setTimeout(function() { assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">New note via form</a></li></ul>') }, 7000);
+    let note = document.getElementById(0)
+    console.log(note)
+    note.click();
+    setTimeout(function() { assert.isTrue(app.innerHTML == '<div>I am the first note to be created here</div>') }, 7000);
+    console.log("CAN DISPLAY NOTE")
   }
 
   function addsNewNotesFromForm(){
     let notelist = new NoteList();
     let noteController = new NoteController(notelist);
-    noteController.createNote("New note via form")
-    assert.isTrue(app.innerHTML == '<ul><li><a href="#notes/0">New note via form</a></li></ul>')
+   // <form id=text action=#notes/new method=post>
+   //change inner html value to fill in form and click submit then check
+    let input = document.getElementById("text-area")
+    input.value = "New note via form"
+    let submit = document.getElementById("text")
+    console.log(submit)
+    submit.click()
+
+   // noteController.createNote("New note via form")
+   setTimeout(function() { assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">New note via form</a></li></ul>') }, 7000);
   }
 
   noteControllerCanBeInstantiated()
