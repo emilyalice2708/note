@@ -38,7 +38,8 @@
     let note = document.getElementById(0)
     noteController.listenForHash()
     note.click();
-    setTimeout(function() { assert.isTrue(app.innerHTML == '<div>I am the first note to be created here</div>') }, 2000);
+    assert.isTrue(window.location.hash === '#notes/0');
+    setTimeout(function() { assert.isTrue(app.innerHTML == '<div>I am the first note to be created here</div>') }, 1000);
     console.log("CAN DISPLAY NOTE")
   }
 
