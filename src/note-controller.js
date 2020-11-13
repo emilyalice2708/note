@@ -21,12 +21,16 @@ class NoteController {
       const note = event.srcElement[0] ? event.srcElement[0].value : null;
       if (!note) return
 
-      this.noteList.newNote(note);
-      this.insertHtml()
+      this.createNote(note)
     }.bind(this));
   };
 
-  changeURL(){
+  createNote(note){
+    this.noteList.newNote(note);
+    this.insertHtml()
+  };
+
+  listenForHash(){
     window.addEventListener("hashchange", function(){
       const path = window.location.hash.split('#')[1]
       const id = path.split('/')[1]
@@ -48,5 +52,5 @@ class NoteController {
 notelist = new NoteList();
 controller = new NoteController(notelist);
 controller.insertHtml();
-controller.changeURL()
+controller.listenForHash()
 controller.submitForm()

@@ -8,8 +8,8 @@ class NoteList {
     return this.notes;
   }
 
-  newNote(text) {
-    let note = new Note(text, this.id);
+  newNote(text, noteClass = Note) {
+    let note = new noteClass(text, this.id);
     this.notes.push(note);
     this.id++;
   }

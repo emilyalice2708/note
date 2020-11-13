@@ -7,6 +7,14 @@
     <input type=submit>
   </form>
 `)
+  class DoubleNote {
+    getText(){
+      return ""
+    }
+  }
+  class DoubleNoteList{
+
+  }
  
   app.setAttribute('id', 'app');
   document.body.appendChild(app);
@@ -17,7 +25,6 @@
     assert.isTrue(typeof(noteController) === "object")
     console.log("canbeinstantiated")
   }
- 
  
   function canCreateEmptyHtmlList() {
     let notelist = new NoteList();
@@ -46,8 +53,16 @@
     assert.isTrue(app.innerHTML == '<div>I am the first note to be created here</div>')
   }
 
+  function addsNewNotesFromForm(){
+    let notelist = new NoteList();
+    let noteController = new NoteController(notelist);
+    noteController.createNote("New note via form")
+    assert.isTrue(app.innerHTML == '<ul><li><a href="#notes/0">New note via form</a></li></ul>')
+  }
+
   noteControllerCanBeInstantiated()
   canCreateEmptyHtmlList()
   canAddNoteAndUrl()
   canDisplayNote()
+  addsNewNotesFromForm()
 })(this);

@@ -1,3 +1,25 @@
-# Note
+# Note App
+- Makers week 7 project
 
-Makers week 7 project.
+## Goals
+- Build a front end web app using vanilla Javascript
+- Build our own tests withou a framework
+- Use node to serve the app
+
+## User Stories
+
+```
+As a programmer
+I can see a list of my notes, where each note is abbreviated to the first 20 characters
+So I can find the one I want
+```
+```
+As a programmer
+I can create a new note
+So I can record something I need to remember
+```
+```
+As a programmer
+I can see the full text of an individual note on its own page
+So I can see all the information in the note
+```
