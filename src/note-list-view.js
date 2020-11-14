@@ -6,7 +6,7 @@ class NoteListView{
   getHtmlList(){
     let listView = '<ul>'
     let notes = this._noteList.getNotes().map(note => {
-      return `<li><a href="#notes/${note.id}">${note.getText().slice(0, 20)}</a></li>`
+      return `<li><a id="${note.id}" href="#notes/${note.id}">${note.getText().slice(0, 20)}</a></li>`
     });
     return listView += notes.join('') + '</ul>'
   };

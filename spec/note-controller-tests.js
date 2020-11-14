@@ -4,65 +4,54 @@
   document.body.innerHTML = (`
   <form id=text action=#notes/new method=post>
     <input type=text id=text-area>
-    <input type=submit>
+    <input id="submitbutton" type=submit>
   </form>
 `)
-  class DoubleNote {
-    getText(){
-      return ""
-    }
-  }
-  class DoubleNoteList{
-
-  }
- 
   app.setAttribute('id', 'app');
   document.body.appendChild(app);
 
+  var notelist = new NoteList();
+  var noteController = new NoteController(notelist);
+
   function noteControllerCanBeInstantiated() {
-    let notelist = new NoteList();
-    let noteController = new NoteController(notelist);
     assert.isTrue(typeof(noteController) === "object")
-    console.log("canbeinstantiated")
+    console.log("CAN BE INSTANTIATED")
   }
  
   function canCreateEmptyHtmlList() {
-    let notelist = new NoteList();
-    let noteController = new NoteController(notelist);
     noteController.insertHtml();
     assert.isTrue(app.innerHTML == '<ul></ul>');
+    console.log("CAN CREATE EMPTY HTML LIST")
   }
 
   function canAddNoteAndUrl() {
-    let notelist = new NoteList();
-    notelist.newNote("test")
-    let noteController = new NoteController(notelist);
+    notelist.newNote("I am the first note to be created here")
     noteController.insertHtml();
 
-    assert.isTrue(app.innerHTML == '<ul><li><a href="#notes/0">test</a></li></ul>');
+    assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">I am the first note </a></li></ul>');
     console.log("RETRIEVES NOTE")
   }
 
   function canDisplayNote() {
-    let notelist = new NoteList();
     notelist.newNote("I am the first note to be created here")
-    let noteController = new NoteController(notelist);
-    noteController.insertHtml();
-    assert.isTrue(app.innerHTML == '<ul><li><a href="#notes/0">I am the first note </a></li></ul>');
-    noteController.displayNote(0)
-    assert.isTrue(app.innerHTML == '<div>I am the first note to be created here</div>')
+
+    let note = document.getElementById(0)
+    noteController.listenForHash()
+    note.click();
+    assert.isTrue(window.location.hash === '#notes/0');
+    setTimeout(function() { assert.isTrue(app.innerHTML == '<div>I am the first note to be created here</div>') }, 1000);
+    console.log("CAN DISPLAY NOTE")
   }
 
   function addsNewNotesFromForm(){
-    let notelist = new NoteList();
-    let noteController = new NoteController(notelist);
     noteController.createNote("New note via form")
-    assert.isTrue(app.innerHTML == '<ul><li><a href="#notes/0">New note via form</a></li></ul>')
+    console.log(app.innerHTML)
+    assert.isTrue(app.innerHTML == '<ul><li><a id="0" href="#notes/0">I am the first note </a></li><li><a id="1" href="#notes/1">New note via form</a></li></ul>')
   }
 
   noteControllerCanBeInstantiated()
   canCreateEmptyHtmlList()
   canAddNoteAndUrl()
-  canDisplayNote()
   addsNewNotesFromForm()
+  canDisplayNote()
 })(this);

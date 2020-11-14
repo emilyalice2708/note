@@ -22,7 +22,7 @@
     let noteList = new NoteList();
     noteList.newNote("Test note");
     let noteListView = new NoteListView(noteList);
-    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a href="#notes/0">Test note</a></li></ul>')
+    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a id="0" href="#notes/0">Test note</a></li></ul>')
   }
 
   function getHtmlListCanReturnMultipleObjects(){
@@ -30,7 +30,7 @@
     noteList.newNote("Test note 1");
     noteList.newNote("Test note 2");
     let noteListView = new NoteListView(noteList);
-    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a href="#notes/0">Test note 1</a></li><li><a href="#notes/1">Test note 2</a></li></ul>')
+    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a id="0" href="#notes/0">Test note 1</a></li><li><a id="1" href="#notes/1">Test note 2</a></li></ul>')
   }
 
   function getHtmlListCanReturnZeroObjects(){
@@ -43,7 +43,7 @@
     let noteList = new NoteList();
     noteList.newNote("Test note with more than 20 characters");
     let noteListView = new NoteListView(noteList);
-    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a href="#notes/0">Test note with more </a></li></ul>')
+    assert.isTrue(noteListView.getHtmlList() === '<ul><li><a id="0" href="#notes/0">Test note with more </a></li></ul>')
   }
 
   noteListViewIsObject()
